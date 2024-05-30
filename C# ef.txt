@@ -1,0 +1,17 @@
+1. Installing CLI EF Core Tools
+dotnet tool uninstall --global dotnet-ef
+
+dotnet tool install --global dotnet-ef --version 7.0.5
+
+2.Creating Migration
+
+dotnet ef migrations add Initial -o Migrations -c Example3.Test1DbContext
+
+3.Creating the Database
+
+dotnet ef database update -c Example3.Test1DbContext
+
+appsettings.json:
+ "ConnectionStrings": {
+   "Development": "Data Source=(local);Initial Catalog=finalcap_;User ID=Vip-51\Administrator;Password=myPassword;Trust Server Certificate=true; MultipleActiveResultSets=true"
+ },
