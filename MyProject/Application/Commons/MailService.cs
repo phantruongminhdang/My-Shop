@@ -19,7 +19,7 @@ namespace Application.Commons
                 " border-radius: 15px;\r\n  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);\r\n  overflow: hidden;\r\n  width: 80%;\r\n  max-width: 500px;\r\n " +
                 " text-align: left; padding: 30px;\">" + content +
                 "   <p style=\"margin-bottom: 10px;\r\n   " +
-                " text-align: left;\">Trân trọng,</p>\r\n    <p style=\"font-weight: bold; color: #009c11;\">Thanh Sơn Garden</p>\r\n  " +
+                " text-align: left;\">Trân trọng,</p>\r\n    <p style=\"font-weight: bold; color: #009c11;\">minhdang12345c</p>\r\n  " +
                 "  <img class=\"logo\" style=\"max-width: 50%;\r\n    height: auto;\r\n    margin-bottom: 20px;\"\r\n    " +
                 "  src=\"\"\r\n    " +
                 "  alt=\"Logo minhdang12345c\">  <div style=\"margin-top: 20px;\r\n    text-align: left;\">\r\n    " +

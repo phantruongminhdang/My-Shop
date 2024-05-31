@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         private readonly IClaimsService _claims;
 
         public UserController(IUserService userService,
-            UserManager<ApplicationUser> userManager,
+             UserManager<ApplicationUser> userManager,
              SignInManager<ApplicationUser> signInManager, 
              IClaimsService claimsService)
         {

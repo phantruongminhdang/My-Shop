@@ -20,48 +20,9 @@ namespace WebAPI.Controllers
             _productService = productService;
             _claims = claimsService;
         }
-        [HttpGet("Pagination")]
-        public async Task<IActionResult> GetPagination([FromQuery] int pageIndex, int pageSize)
-        {
-            try
-            {
-                var products = await _productService.GetPagination(pageIndex, pageSize, _claims.GetIsAdmin);
-                if (products.Items.Count == 0)
-                {
-                    return BadRequest("Không tìm thấy!");
-                }
-                else
-                {
-                    return Ok(products);
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        
         [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            try
-            {
-                var products = await _productService.GetAll(_claims.GetIsAdmin);
-                if (products.Items.Count == 0)
-                {
-                    return BadRequest("Không tìm thấy!");
-                }
-                else
-                {
-                    return Ok(products);
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-        [HttpPost("Filter")]
-        public async Task<IActionResult> Post([FromQuery] int pageIndex, int pageSize, [FromBody] FilterProductModel filterBonsaiModel)
+        public async Task<IActionResult> GetByFilter([FromQuery] FilterProductModel filterBonsaiModel, int pageIndex= 0, int pageSize= 20)
         {
             try
             {
@@ -141,34 +102,20 @@ namespace WebAPI.Controllers
             try
             {
                 var products = await _productService.GetBoughtProduct(_claims.GetCurrentUserId);
-                if (products.Items.Count == 0)
-                {
-                    return BadRequest("Không tìm thấy!");
-                }
-                else
-                {
-                    return Ok(products);
-                }
+                return Ok(products);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("Category")]
-        public async Task<IActionResult> GetByCategory([FromQuery] int pageIndex, int pageSize, Guid categoryId)
+        [HttpGet("Category/{categoryId}")]
+        public async Task<IActionResult> GetByCategory([FromRoute] Guid categoryId, [FromQuery] int pageIndex = 0, int pageSize = 20)
         {
             try
             {
                 var products = await _productService.GetByCategory(pageIndex, pageSize, categoryId);
-                if (products.Items.Count == 0)
-                {
-                    return BadRequest("Không tìm thấy!");
-                }
-                else
-                {
-                    return Ok(products);
-                }
+                return Ok(products);
             }
             catch (Exception ex)
             {

@@ -24,7 +24,6 @@ namespace Infrastructures
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IUserConnectionService, UserConnectionService>();
             services.AddScoped<IDashBoardService, DashBoardService>();
             services.AddScoped<IAuthService, AuthService>();
 

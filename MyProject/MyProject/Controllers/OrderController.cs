@@ -1,5 +1,4 @@
-﻿using Application.Interfaces;
-using Application.Interfaces.Services;
+﻿using Application.Interfaces.Services;
 using Application.Interfaces.Services.Momo;
 using Application.ViewModels;
 using Application.ViewModels.OrderViewModels;
@@ -95,7 +94,7 @@ namespace WebAPI.Controllers
 
         }
 
-        [Authorize(Roles = "Manager,Staff,Gardener")]
+        [Authorize(Roles = "Manager")]
         [HttpPut("{orderId}")]
         [Authorize]
         public async Task<IActionResult> UpdateStatusAsync(Guid orderId, OrderStatus orderStatus)

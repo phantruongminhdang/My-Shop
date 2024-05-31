@@ -8,7 +8,7 @@ namespace Application.Interfaces.Services
     {
         public Task<Pagination<Product>> GetPagination(int pageIndex, int pageSize, bool isAdmin = false);
         public Task<Pagination<Product>> GetAll(bool isAdmin = false);
-        public Task<Pagination<Product>> GetByFilter(int pageIndex, int pageSize, FilterProductModel filterProductModel, bool isAdmin = false);
+        public Task<Pagination<Product>?> GetByFilter(int pageIndex, int pageSize, FilterProductModel filterProductModel, bool isAdmin = false);
         public Task<Product?> GetById(Guid id, bool isAdmin = false);
         public Task AddAsync(ProductModel productModel);
         public Task Update(Guid id, ProductModel productModel);

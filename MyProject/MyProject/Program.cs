@@ -5,9 +5,9 @@ using Infrastructures;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using MyProject.Middlewares;
 using System.Text;
-using WebAPI;
-using WebAPI.Middlewares;
+using MyProject;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,8 +1,7 @@
-﻿using Application.Interfaces;
-using Application.Interfaces.Services;
+﻿using Application.Interfaces.Services;
 using System.Security.Claims;
 
-namespace WebAPI.Services
+namespace MyProject.Services
 {
     public class ClaimsService : IClaimsService
     {

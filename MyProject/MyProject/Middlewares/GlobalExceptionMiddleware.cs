@@ -1,4 +1,4 @@
-﻿namespace WebAPI.Middlewares
+﻿namespace MyProject.Middlewares
 {
     public class GlobalExceptionMiddleware : IMiddleware
     {

@@ -1,5 +1,4 @@
 ﻿using Application.Commons;
-using Application.Interfaces;
 using Application.Interfaces.Repositories.Base;
 using Application.Interfaces.Services;
 using Domain.Entities;

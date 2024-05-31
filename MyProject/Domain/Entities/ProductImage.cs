@@ -7,6 +7,7 @@ namespace Domain.Entities
     public class ProductImage : BaseEntity
     {
         [ForeignKey("Product")]
+        [JsonIgnore]
         public Guid ProductId { get; set; }
         public string? ImageUrl { get; set; }
         [JsonIgnore]

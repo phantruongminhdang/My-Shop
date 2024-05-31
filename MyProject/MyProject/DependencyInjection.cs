@@ -1,16 +1,15 @@
 ﻿using Application.Commons;
-using Application.Interfaces;
 using Application.Interfaces.Services;
 using Application.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
+using MyProject.Middlewares;
+using MyProject.Services;
 using System.Diagnostics;
-using WebAPI.Middlewares;
-using WebAPI.Services;
 
-namespace WebAPI
+namespace MyProject
 {
     public static class DependencyInjection
     {

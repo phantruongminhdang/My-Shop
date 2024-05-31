@@ -77,10 +77,10 @@ namespace Application.Services
         public async Task<string> CreateOrderAsync(OrderModel model, string userId)
         {
             var orderId = await CreateOrderByTransaction(model, userId);
-            var momoUrl = await PaymentAsync(orderId);
+            var momoUrl = await GetPaymentUrl(orderId);
             return momoUrl;
         }
-        public async Task<string> PaymentAsync(Guid tempId)
+        private async Task<string> GetPaymentUrl(Guid tempId)
         {
             var order = await _unit.OrderRepository.GetByIdAsync(tempId);
             if (order == null)

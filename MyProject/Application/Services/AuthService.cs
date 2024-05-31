@@ -147,13 +147,13 @@ namespace Application.Services
                 return result;
             }
         }
-        public async Task<bool> IsInRoleAsync(string userId, string role)
+        private async Task<bool> IsInRoleAsync(string userId, string role)
         {
             var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
 
             return user != null && await _userManager.IsInRoleAsync(user, role);
         }
-        public async Task<string> AuthenticateAsync(string username, string password)
+        private async Task<string> AuthenticateAsync(string username, string password)
         {
             var user = await _userManager.FindByNameAsync(username);
             if (user == null)
@@ -312,7 +312,7 @@ namespace Application.Services
                         throw new Exception($"Lỗi đăng nhâp Google: {ex.Message}");
                     }
                 }*/
-        public async Task<string> CreateJwtToken(ApplicationUser user)
+        /*public async Task<string> CreateJwtToken(ApplicationUser user)
         {
             //tạo token
             var roles = await _userManager.GetRolesAsync(user);
@@ -337,7 +337,7 @@ namespace Application.Services
                 signingCredentials: new SigningCredentials(authenKey, SecurityAlgorithms.HmacSha512Signature)
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+        }*/
         public async Task<bool> SendEmailAsync(string username, string callbackUrl, string type)
         {
             var user = await _userManager.FindByNameAsync(username);
@@ -388,37 +388,7 @@ namespace Application.Services
             return result;
 
         }
-        /*public async Task<string> ResetPasswordAsync(ResetPassModel model)
-        {
-            if (model.UserId == null || model.Code == null)
-            {
-                throw new Exception("Không thể đặt lại mật khẩu. Vui lòng sử dụng đường dẫn đã được gửi tới trong email của bạn!");
-            }
-            if (!model.NewPassword.Equals(model.ConfirmPassword))
-            {
-                throw new Exception("Mật khẩu với và mật khẩu xác nhận không khớp!");
-            }
-            var code = model.Code;
-            // Kiểm tra xác thực người dùng và tạo mã đặt lại mật khẩu (reset token)
-            var user = await _userManager.FindByIdAsync(model.UserId);
-            if (user == null)
-            {
-                throw new Exception("Không tìm thấy tài khoản bạn yêu cầu!");
-            }
-            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await _userManager.ResetPasswordAsync(user, code, model.NewPassword);
-            if (result.Succeeded)
-            {
-                // Mật khẩu đã được đặt lại thành công
-                return "Mật khẩu đã được đặt lại thành công! Vui lòng tiến hành đăng nhập!";
-            }
-            else
-            {
-                // Đặt lại mật khẩu không thành công
-                throw new Exception("Không thể đặt lại mật khẩu. Vui lòng sử dụng đường dẫn đã được gửi tới trong email của bạn!");
-            }
-        }*/
-
+      
         public async Task<string> ResetPasswordAsync(ResetPassModel model)
         {
             if (model.Email == null || model.Code == null)

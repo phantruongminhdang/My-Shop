@@ -10,12 +10,10 @@ namespace Application.Services
 {
     public class FirebaseService : IFirebaseService
     {
-        private readonly FirebaseConfiguration _firebaseConfiguration;
         private readonly IConfiguration _configuration;
 
         public FirebaseService(FirebaseConfiguration config, IConfiguration configuration)
         {
-            _firebaseConfiguration = config;
             _configuration = configuration;
         }
 

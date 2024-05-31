@@ -91,9 +91,9 @@ namespace Application.Services
             }
             try
             {
-                if (filterProductModel.Category != null && filterProductModel.Category != "")
+                if (filterProductModel.CategoryId != null && filterProductModel.CategoryId != "")
                 {
-                    filter.Add(x => x.CategoryId == Guid.Parse(filterProductModel.Category));
+                    filter.Add(x => x.CategoryId == Guid.Parse(filterProductModel.CategoryId));
                 }
             }
             catch (Exception)
@@ -303,7 +303,7 @@ namespace Application.Services
             var orderDetails = await _unitOfWork.OrderDetailRepository.GetAsync(isTakeAll: true, expression: x => x.Order.CustomerId == customer.Id && x.Order.OrderStatus == Domain.Enums.OrderStatus.Delivered);
             if (orderDetails.Items.Count == 0)
             {
-                throw new Exception("Bạn chưa có đơn hàng hoàn thành nào");
+                throw new Exception("Bạn chưa có đơn hàng hoàn thành nào!");
             }
             List<Guid> orderDetailsId = new List<Guid>();
             foreach (OrderDetail orderDetail in orderDetails.Items)
