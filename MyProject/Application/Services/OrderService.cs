@@ -234,7 +234,7 @@ namespace Application.Services
                 await _unit.SaveChangeAsync();
                 if (momo.resultCode != 0)
                 {
-                    await UpdateproductFromOrder(orderId);
+                    await UpdateProductFromOrder(orderId);
                 }
             }
             catch (Exception exx)
@@ -243,7 +243,7 @@ namespace Application.Services
             }
         }
 
-        public async Task UpdateproductFromOrder(Guid orderId)
+        public async Task UpdateProductFromOrder(Guid orderId)
         {
             var order = await _unit.OrderRepository.GetAllQueryable()
                 .Include(x => x.OrderDetails)
