@@ -36,7 +36,9 @@ namespace Infrastructures
             services.AddScoped<IProductImageRepository, ProductImageRepository>();
             
             services.AddScoped<IFirebaseService, FirebaseService>();
+            services.AddScoped<IVnPayService, VnPayService>();
             services.AddSingleton<FirebaseService>();
+            services.AddSingleton<VnPayService>();
             services.AddScoped<IdUtil>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<ICurrentTime, CurrentTime>();

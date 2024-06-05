@@ -18,7 +18,7 @@ namespace Application.Services
 
             var newUser = await _unitOfWork.CustomerRepository.GetAsync(isTakeAll: true, expression: x => x.CreationDate >= DateTime.Now.AddDays(-30));
             var newOrder = await _unitOfWork.OrderRepository.GetAsync(isTakeAll: true, expression: x => x.CreationDate >= DateTime.Now.AddDays(-30) && x.OrderStatus >= Domain.Enums.OrderStatus.Paid);
-            double totalOrderIncome = newOrder.Items.Sum(item => item.Price);
+            double totalOrderIncome = newOrder.Items.Sum(item => item.TotalPrice);
             DashboardViewModel dashboardViewModel = new DashboardViewModel()
             {
                 NewUser = newUser.Items.Count,

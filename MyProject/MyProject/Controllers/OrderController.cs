@@ -1,5 +1,4 @@
 ﻿using Application.Interfaces.Services;
-using Application.Interfaces.Services.Momo;
 using Application.ViewModels;
 using Application.ViewModels.OrderViewModels;
 using Domain.Enums;
@@ -29,7 +28,7 @@ namespace WebAPI.Controllers
                 var resultValidate = await _orderService.ValidateOrderModel(model, userId);
                 if (resultValidate == null)
                 {
-                    var result = await _orderService.CreateOrderAsync(model, userId);
+                    var result = await _orderService.CreateOrderAsync(model, userId, HttpContext);
                     if (result != null)
                         return Ok(result);
                     else return BadRequest(result);
@@ -46,13 +45,13 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPost("IpnHandler")]
-        public async Task<IActionResult> IpnAsync([FromBody] MomoRedirect momo)
+        [HttpGet("IpnHandler")]
+        public async Task<IActionResult> IpnAsync()
         {
             try
             {
-                await _orderService.HandleIpnAsync(momo);
-                return Ok();
+                var response = await _orderService.PaymentExecuteIpn(Request.Query);
+                return Ok(response);
             }
             catch (Exception ex)
             {

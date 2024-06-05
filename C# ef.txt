@@ -5,11 +5,12 @@ dotnet tool install --global dotnet-ef --version 7.0.5
 
 2.Creating Migration
 
-dotnet ef migrations add Initial -o Migrations -c Example3.Test1DbContext
+dotnet ef migrations add Initial -o Migrations -c Infrastructures.AppDbContext
 
 3.Creating the Database
 
 dotnet ef database update -c Example3.Test1DbContext
+dotnet ef database update -s MyShop -p Infrastructures
 
 appsettings.json:
  "ConnectionStrings": {

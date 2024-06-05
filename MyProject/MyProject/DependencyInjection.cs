@@ -24,6 +24,7 @@ namespace MyProject
             services.AddSingleton<Stopwatch>();
             services.AddScoped<IClaimsService, ClaimsService>();
             services.AddScoped<IFirebaseService, FirebaseService>();
+            services.AddScoped<IVnPayService, VnPayService>();
             services.AddSingleton<FirebaseConfiguration>();
             services.AddHttpContextAccessor();
             services.AddFluentValidationAutoValidation();

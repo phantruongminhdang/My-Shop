@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructures.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240518122732_Initial")]
+    [Migration("20240605191532_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -241,14 +241,8 @@ namespace Infrastructures.Migrations
                     b.Property<DateTime?>("DeliveryDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("DeliveryPrice")
-                        .HasColumnType("float");
-
                     b.Property<DateTime?>("ExpectedDeliveryDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("GardenerId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -268,8 +262,8 @@ namespace Infrastructures.Migrations
                     b.Property<int>("OrderStatus")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<Guid?>("ShipperId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("TotalPrice")
                         .HasColumnType("float");
@@ -347,10 +341,6 @@ namespace Infrastructures.Migrations
                     b.Property<DateTime?>("DeletionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ExtraData")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Information")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -375,21 +365,6 @@ namespace Infrastructures.Migrations
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("OrderIdFormMomo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OrderType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PartnerCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PayType")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PaymentMethod")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -397,17 +372,6 @@ namespace Infrastructures.Migrations
                     b.Property<string>("RedirectUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RequestId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RequestType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("ResponseTime")
-                        .HasColumnType("bigint");
 
                     b.Property<int>("ResultCode")
                         .HasColumnType("int");
@@ -742,7 +706,7 @@ namespace Infrastructures.Migrations
             modelBuilder.Entity("Domain.Entities.ProductImage", b =>
                 {
                     b.HasOne("Domain.Entities.Product", "Product")
-                        .WithMany("BonsaiImages")
+                        .WithMany("ProductImages")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -823,9 +787,9 @@ namespace Infrastructures.Migrations
 
             modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
-                    b.Navigation("BonsaiImages");
-
                     b.Navigation("OrderDetails");
+
+                    b.Navigation("ProductImages");
                 });
 #pragma warning restore 612, 618
         }

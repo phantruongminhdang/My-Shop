@@ -11,7 +11,7 @@ namespace Infrastructures.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -266,13 +266,11 @@ namespace Infrastructures.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    GardenerId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ShipperId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ExpectedDeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    DeliveryPrice = table.Column<double>(type: "float", nullable: false),
                     TotalPrice = table.Column<double>(type: "float", nullable: false),
                     OrderStatus = table.Column<int>(type: "int", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -353,7 +351,7 @@ namespace Infrastructures.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
+*/
             migrationBuilder.CreateTable(
                 name: "OrderTransaction",
                 columns: table => new
@@ -363,20 +361,12 @@ namespace Infrastructures.Migrations
                     Amount = table.Column<double>(type: "float", nullable: false),
                     IpnURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PartnerCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RedirectUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RequestId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RequestType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TransactionStatus = table.Column<int>(type: "int", nullable: false),
                     PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrderIdFormMomo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrderType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TransId = table.Column<long>(type: "bigint", nullable: false),
                     ResultCode = table.Column<int>(type: "int", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PayType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ResponseTime = table.Column<long>(type: "bigint", nullable: false),
-                    ExtraData = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Signature = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -397,7 +387,7 @@ namespace Infrastructures.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateIndex(
+            /*migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
@@ -462,14 +452,14 @@ namespace Infrastructures.Migrations
                 name: "IX_OrderDetail_ProductId",
                 table: "OrderDetail",
                 column: "ProductId");
-
+*/
             migrationBuilder.CreateIndex(
                 name: "IX_OrderTransaction_OrderId",
                 table: "OrderTransaction",
                 column: "OrderId",
                 unique: true);
 
-            migrationBuilder.CreateIndex(
+            /*migrationBuilder.CreateIndex(
                 name: "IX_Product_CategoryId",
                 table: "Product",
                 column: "CategoryId");
@@ -477,13 +467,13 @@ namespace Infrastructures.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ProductImage_ProductId",
                 table: "ProductImage",
-                column: "ProductId");
+                column: "ProductId");*/
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
+           /* migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -526,7 +516,7 @@ namespace Infrastructures.Migrations
                 name: "Category");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "AspNetUsers");*/
         }
     }
 }
