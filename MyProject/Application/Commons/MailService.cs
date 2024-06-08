@@ -24,7 +24,7 @@ namespace Application.Commons
                 "  src=\"\"\r\n    " +
                 "  alt=\"Logo minhdang12345c\">  <div style=\"margin-top: 20px;\r\n    text-align: left;\">\r\n    " +
                 "  <p style=\"margin-bottom: 10px;\r\n text-align: left; margin: 5px 0; \"><strong>Liên hệ với chúng tôi để được hỗ trợ nhiều\r\n hơn</strong>" +
-                "</p>\r\n <p style=\"margin-bottom: 10px;\r\n text-align: left; margin: 5px 0;\"><strong>Email:</strong> hotro@thanhson.vn</p>\r\n " +
+                "</p>\r\n <p style=\"margin-bottom: 10px;\r\n text-align: left; margin: 5px 0;\"><strong>Email:</strong> </p>\r\n " +
                 " <p style=\"margin-bottom: 10px;\r\n      text-align: left; margin: 5px 0;\"><strong>Hotline:</strong> (024) 6680 5588</p>\r\n    </div>\r\n  </div>";
             email.Body = builder.ToMessageBody();
             using var smtp = new MailKit.Net.Smtp.SmtpClient();

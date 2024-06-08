@@ -11,7 +11,7 @@ namespace Infrastructures.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            /*migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -351,7 +351,7 @@ namespace Infrastructures.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-*/
+
             migrationBuilder.CreateTable(
                 name: "OrderTransaction",
                 columns: table => new
@@ -387,7 +387,7 @@ namespace Infrastructures.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            /*migrationBuilder.CreateIndex(
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
@@ -452,14 +452,14 @@ namespace Infrastructures.Migrations
                 name: "IX_OrderDetail_ProductId",
                 table: "OrderDetail",
                 column: "ProductId");
-*/
+
             migrationBuilder.CreateIndex(
                 name: "IX_OrderTransaction_OrderId",
                 table: "OrderTransaction",
                 column: "OrderId",
                 unique: true);
 
-            /*migrationBuilder.CreateIndex(
+            migrationBuilder.CreateIndex(
                 name: "IX_Product_CategoryId",
                 table: "Product",
                 column: "CategoryId");
@@ -467,13 +467,13 @@ namespace Infrastructures.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ProductImage_ProductId",
                 table: "ProductImage",
-                column: "ProductId");*/
+                column: "ProductId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-           /* migrationBuilder.DropTable(
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -516,7 +516,7 @@ namespace Infrastructures.Migrations
                 name: "Category");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");*/
+                name: "AspNetUsers");
         }
     }
 }
