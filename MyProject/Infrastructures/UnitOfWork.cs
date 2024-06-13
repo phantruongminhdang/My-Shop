@@ -1,5 +1,6 @@
 ﻿using Application;
 using Application.Interfaces.Repositories;
+using Infrastructures.Repositories;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructures
@@ -14,21 +15,24 @@ namespace Infrastructures
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderDetailRepository _orderDetailRepository;
         private readonly IOrderTransactionRepository _orderTransactionRepository;
+        private readonly IDeliveryImageRepository _deliveryImageRepository;
         private IDbContextTransaction _transaction;
 
         public UnitOfWork(AppDbContext dbContext, ICustomerRepository customerRepository,
             IProductRepository productRepository, ICategoryRepository categoryRepository, IOrderRepository orderRepository, 
-            IOrderDetailRepository orderDetailRepository, IOrderTransactionRepository orderTransactionRepository, IProductImageRepository productImageRepository
+            IOrderDetailRepository orderDetailRepository, IOrderTransactionRepository orderTransactionRepository, 
+            IProductImageRepository productImageRepository, IDeliveryImageRepository deliveryImageRepository
          )
         {
             _dbContext = dbContext;
             _customerRepository = customerRepository;
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
-            _productImageRepository = productImageRepository;
             _orderRepository = orderRepository;
             _orderDetailRepository = orderDetailRepository;
-            _orderTransactionRepository = orderTransactionRepository;            
+            _orderTransactionRepository = orderTransactionRepository;     
+            _productImageRepository = productImageRepository;
+            _deliveryImageRepository = deliveryImageRepository;
         }
 
         public ICustomerRepository CustomerRepository => _customerRepository;
@@ -44,6 +48,8 @@ namespace Infrastructures
         public IOrderDetailRepository OrderDetailRepository => _orderDetailRepository;
 
         public IOrderTransactionRepository OrderTransactionRepository => _orderTransactionRepository;
+        public IDeliveryImageRepository DeliveryImageRepository => _deliveryImageRepository;
+
 
         public async Task<int> SaveChangeAsync()
         {

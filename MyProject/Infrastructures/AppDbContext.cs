@@ -25,6 +25,7 @@ namespace Infrastructures
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderDetail> OrderDetail { get; set; }
         public DbSet<OrderTransaction> OrderTransaction { get; set; }
+        public DbSet<DeliveryImage> DeliveryImage { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

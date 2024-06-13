@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 
-namespace WebAPI.Controllers
+namespace MyProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         private readonly IAuthService _auth;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public AuthController(IAuthService authService,UserManager<ApplicationUser> userManager)
+        public AuthController(IAuthService authService, UserManager<ApplicationUser> userManager)
         {
             _auth = authService;
             _userManager = userManager;
@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-           
+
             try
             {
                 //var result = await _identityService.AuthenticateAsync(email, password);
@@ -89,7 +89,7 @@ namespace WebAPI.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            
+
             try
             {
                 var validateResult = await _auth.ValidateAsync(model);
@@ -123,7 +123,7 @@ namespace WebAPI.Controllers
         [HttpGet("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string? code, string? userId)
         {
-            
+
             try
             {
                 await _auth.ConfirmEmailAsync(code, userId);
@@ -135,21 +135,6 @@ namespace WebAPI.Controllers
             }
         }
 
-        /*[HttpPost("Login/Google")]
-        public async Task<IActionResult> LoginGoogle([FromBody] ExternalLoginModel model)
-        {
-            try
-            {
-                
-                var result = await _auth.HandleExternalLoginAsync(model);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-*//**/
         [HttpPost("ForgotPassword")]
         public async Task<IActionResult> ForgotPassword(string email)
         {
@@ -162,8 +147,8 @@ namespace WebAPI.Controllers
                     return BadRequest("Không tìm thấy địa chỉ emal");
                 }
                 //lấy host để redirect về
-                
-                var token = await _userManager.GenerateTwoFactorTokenAsync(user,"Email");
+
+                var token = await _userManager.GenerateTwoFactorTokenAsync(user, "Email");
                 await _auth.SendEmailAsync(email.Trim(), token, "ResetPasswordForMobile");
                 return Ok("Yêu cầu đổi mật khẩu đã được gửi thành công đến địa chỉ email của bạn. Vui lòng kiểm tra hộp thư đến của bạn và xác thực email để tiến hành đổi mật khẩu.");
             }
@@ -181,7 +166,7 @@ namespace WebAPI.Controllers
                 {
                     return BadRequest("Vui lòng không để trống Email của người dùng.");
                 }
-               
+
                 var result = await _auth.ResetPasswordAsync(model);
                 return Ok(result);
             }
@@ -218,15 +203,15 @@ namespace WebAPI.Controllers
             {
                 schema = uri.Scheme; // Lấy schema (http hoặc https) của frontend
                 host = uri.Host; // Lấy host của frontend
-                callbackUrl = schema + "://" + host + Url.Action(action, "Auth", new { userId = user.Id, code = code });
+                callbackUrl = schema + "://" + host + Url.Action(action, "Auth", new { userId = user.Id, code });
             }
             if (referer.Equals("https://localhost:5001/swagger/index.html"))
             {
-                callbackUrl = "https://localhost:5001" + Url.Action(action, "Auth", new { userId = user.Id, code = code });
+                callbackUrl = "https://localhost:5001" + Url.Action(action, "Auth", new { userId = user.Id, code });
             }
-            else if(referer.Contains("http://localhost:5173"))
+            else if (referer.Contains("http://localhost:5173"))
             {
-                callbackUrl = "http://localhost:5173" + Url.Action(action, "Auth", new { userId = user.Id, code = code });
+                callbackUrl = "http://localhost:5173" + Url.Action(action, "Auth", new { userId = user.Id, code });
             }
             return callbackUrl;
         }

@@ -253,10 +253,6 @@ namespace Application.Services
                         PhoneNumber = model.PhoneNumber,
                         IsRegister = true
                     };
-                    if (model.Role.Equals("Gardener"))
-                    {
-                        newUser.EmailConfirmed = true;
-                    }
                     if (model.Avatar != null)
                     {
                         Random random = new Random();

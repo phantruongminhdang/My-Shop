@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyProject.Controllers.Base;
 
-namespace WebAPI.Controllers
+namespace MyProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
 
         public UserController(IUserService userService,
              UserManager<ApplicationUser> userManager,
-             SignInManager<ApplicationUser> signInManager, 
+             SignInManager<ApplicationUser> signInManager,
              IClaimsService claimsService)
         {
             _userService = userService;
@@ -74,7 +74,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        [Authorize(Roles ="Manager")]
+        [Authorize(Roles = "Manager")]
         [HttpPut("Id")]
         public async Task<IActionResult> Put([FromForm] UserRequestModel model, string id)
         {
@@ -103,7 +103,7 @@ namespace WebAPI.Controllers
             string userId = _claims.GetCurrentUserId.ToString().ToLower();
             try
             {
-                var user = await _userService.GetUserByIdAsync( userId);
+                var user = await _userService.GetUserByIdAsync(userId);
                 return Ok(user);
             }
             catch (Exception ex)
@@ -114,7 +114,7 @@ namespace WebAPI.Controllers
 
         //[Authorize(Roles = "Manager")]
         [HttpGet]
-        public async Task<IActionResult> GetListUser(int pageIndex= 0, int pageSize = 20)
+        public async Task<IActionResult> GetListUser(int pageIndex = 0, int pageSize = 20)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-               var result = await _userService.LockOrUnlockUser(userId);
+                var result = await _userService.LockOrUnlockUser(userId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -157,12 +157,12 @@ namespace WebAPI.Controllers
         }
         //[Authorize(Roles = "Manager")]
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromForm]UserCreateModel model)
+        public async Task<IActionResult> CreateUser([FromForm] UserCreateModel model)
         {
             try
             {
                 var result = await _userService.CreateUserAccount(model);
-                if(result == null)
+                if (result == null)
                     return Ok("Tạo tài khoản thành công");
                 else return BadRequest(result);
             }
@@ -198,7 +198,7 @@ namespace WebAPI.Controllers
                     return NotFound();
                 }
                 await _userService.Delete(role[0], user);
-                if(user == null)
+                if (user == null)
                 {
                     return NotFound("Khoong tim thay user");
                 }

@@ -519,6 +519,12 @@ namespace Application.Services
                     var url = await _fireBaseService.UploadFileToFirebaseStorage(singleImage.image, newImageName, folderName);
                     if (url == null)
                         throw new Exception("Lỗi khi đăng ảnh lên firebase!");
+                    DeliveryImage deliveryImage = new DeliveryImage()
+                    {
+                        OrderId = order.Id,
+                        Image = url
+                    };
+                    await _unit.DeliveryImageRepository.AddAsync(deliveryImage);
                 }
                 order.OrderStatus = OrderStatus.Delivered;
                 order.DeliveryDate = DateTime.Now;

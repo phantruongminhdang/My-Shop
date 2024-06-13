@@ -11,6 +11,7 @@ namespace Application
         public IOrderRepository OrderRepository { get; }
         public IOrderDetailRepository OrderDetailRepository { get; }
         public IOrderTransactionRepository OrderTransactionRepository { get; }
+        public IDeliveryImageRepository DeliveryImageRepository { get; }
         public Task<int> SaveChangeAsync();
         void BeginTransaction();
         Task CommitTransactionAsync();

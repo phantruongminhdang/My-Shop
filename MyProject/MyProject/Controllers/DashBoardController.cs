@@ -1,9 +1,10 @@
 ﻿using Application.Interfaces;
 using Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers
+namespace MyProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,6 +17,7 @@ namespace WebAPI.Controllers
             _dashBoardService = dashBoardService;
         }
         [HttpGet]
+        [Authorize("Manager")]
         public async Task<IActionResult> Get()
         {
             try

@@ -300,7 +300,9 @@ namespace Application.Services
         public async Task<Pagination<Product>> GetBoughtProduct(Guid id)
         {
             var customer = await _idUtil.GetCustomerAsync(id);
-            var orderDetails = await _unitOfWork.OrderDetailRepository.GetAsync(isTakeAll: true, expression: x => x.Order.CustomerId == customer.Id && x.Order.OrderStatus == Domain.Enums.OrderStatus.Delivered);
+            var orderDetails = await _unitOfWork.OrderDetailRepository
+                .GetAsync(isTakeAll: true, 
+                expression: x => x.Order.CustomerId == customer.Id && x.Order.OrderStatus == Domain.Enums.OrderStatus.Delivered);
             if (orderDetails.Items.Count == 0)
             {
                 throw new Exception("Bạn chưa có đơn hàng hoàn thành nào!");
@@ -374,7 +376,7 @@ namespace Application.Services
             }
             if (ProductId.Count != products.Count)
             {
-                throw new Exception("Số lượng cây trong cart khác với số lượng cây");
+                throw new Exception("Số lượng san pham trong cart khác với số lượng ban dau!");
             }
             return products;
         }

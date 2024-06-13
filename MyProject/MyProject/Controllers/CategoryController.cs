@@ -5,7 +5,7 @@ using Application.ViewModels.CategoryViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers
+namespace MyProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,8 +16,8 @@ namespace WebAPI.Controllers
         public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
- 
-  
+
+
         }
         [HttpGet]
         public async Task<IActionResult> Get()

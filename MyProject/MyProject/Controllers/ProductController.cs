@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 
-namespace WebAPI.Controllers
+namespace MyProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,9 +20,9 @@ namespace WebAPI.Controllers
             _productService = productService;
             _claims = claimsService;
         }
-        
+
         [HttpGet]
-        public async Task<IActionResult> GetByFilter([FromQuery] FilterProductModel filterBonsaiModel, int pageIndex= 0, int pageSize= 20)
+        public async Task<IActionResult> GetByFilter([FromQuery] FilterProductModel filterBonsaiModel, int pageIndex = 0, int pageSize = 20)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace WebAPI.Controllers
         }
         [HttpGet("BoughtProduct")]
         [Authorize(Roles = "Customer")]
-        public async Task<IActionResult> GetBoughtBonsai()
+        public async Task<IActionResult> GetBoughtProduct()
         {
             try
             {
@@ -123,7 +123,7 @@ namespace WebAPI.Controllers
             }
         }
         [HttpPut("Disable")]
-        public async Task<IActionResult> DisableBonsai([FromQuery] Guid productId)
+        public async Task<IActionResult> DisableProduct([FromQuery] Guid productId)
         {
             try
             {

@@ -5,7 +5,7 @@ using Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers
+namespace MyProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -60,7 +60,7 @@ namespace WebAPI.Controllers
         }
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetAsync([FromQuery] int pageIndex, [FromQuery] int pageSize)
+        public async Task<IActionResult> GetAsync([FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 20)
         {
             try
             {
@@ -141,7 +141,7 @@ namespace WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        //[Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager")]
         [HttpPut("ShipperAddition/{orderId}")]
         //[Authorize]
         public async Task<IActionResult> ShipperAddition(Guid orderId, Guid shipperId)

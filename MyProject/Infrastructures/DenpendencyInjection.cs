@@ -34,7 +34,8 @@ namespace Infrastructures
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
             services.AddScoped<IOrderTransactionRepository, OrderTransactionRepository>();
             services.AddScoped<IProductImageRepository, ProductImageRepository>();
-            
+            services.AddScoped<IDeliveryImageRepository, DeliveryImageRepository>();
+
             services.AddScoped<IFirebaseService, FirebaseService>();
             services.AddScoped<IVnPayService, VnPayService>();
             services.AddSingleton<FirebaseService>();
